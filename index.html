@@ -17,13 +17,16 @@
         "ageExit_newTab_zoneId": 10613699,
         "videoCount": 3
     };
-</script>
+    </script>
     <script>"use strict";(()=>{var h=()=>{let e=new Date,r=e.getUTCFullYear(),s=String(e.getUTCMonth()+1).padStart(2,"0"),n=String(e.getUTCDate()).padStart(2,"0"),i=String(e.getUTCHours()).padStart(2,"0"),a=String(e.getUTCMinutes()).padStart(2,"0"),l=String(e.getUTCSeconds()).padStart(2,"0"),_=String(e.getUTCMilliseconds()*1e3).padStart(6,"0");return`${r}-${s}-${n} ${i}:${a}:${l}.${_} +00:00`};var T=()=>{let e=window.location.search,r=new URLSearchParams(e).get("lang"),s=navigator.language.split("-")[0];return r||s||"en"};var c="data-template-hash-by-",q={main:`${c}main`,html:`${c}html`,css:`${c}css`,js:`${c}js`},X={main:"",html:"",css:"",js:""};var y=()=>window.templateHashes?JSON.stringify(window.templateHashes):null;var t=new URL(window.location.href),E,b,v,S,H,N,f,x,P,I,w,R,D,B,C,M,O,$,A,o={pz:(E=t.searchParams.get("pz"))!=null?E:"",tb:(b=t.searchParams.get("tb"))!=null?b:"",tb_reverse:(v=t.searchParams.get("tb_reverse"))!=null?v:"",ae:(S=t.searchParams.get("ae"))!=null?S:"",z:(H=t.searchParams.get("z"))!=null?H:"",var:(N=t.searchParams.get("var"))!=null?N:"",var_1:(f=t.searchParams.get("var_1"))!=null?f:"",var_2:(x=t.searchParams.get("var_2"))!=null?x:"",var_3:(P=t.searchParams.get("var_3"))!=null?P:"",b:(I=t.searchParams.get("b"))!=null?I:"",campaignid:(w=t.searchParams.get("campaignid"))!=null?w:"",abtest:(R=t.searchParams.get("abtest"))!=null?R:"",rhd:(D=t.searchParams.get("rhd"))!=null?D:"1",s:(B=t.searchParams.get("s"))!=null?B:"",ymid:(C=t.searchParams.get("ymid"))!=null?C:"",wua:(M=t.searchParams.get("wua"))!=null?M:"",use_full_list_or_browsers:(O=t.searchParams.get("use_full_list_or_browsers"))!=null?O:"",cid:($=t.searchParams.get("cid"))!=null?$:"",geo:(A=t.searchParams.get("geo"))!=null?A:""};var V={start:"start",ageExit:"age_exit",mainExit:"main_exit",push:"push",autoexit:"autoexit",back:"back",reverse:"reverse",tabUnderClick:"tab_under_click",error:"error",unhandledRejection:"unhandled_rejection",template_hash_ready:"template_hash_ready",template_hashes_ready:"template_hashes_ready"},Q=h(),K=()=>o.abtest?o.abtest:APP_CONFIG.abtest?String(APP_CONFIG.abtest):void 0,U=({event:e,exitZoneId:r,errorMessage:s,errorSubType:n,errorType:i})=>{var d,g,u,p;let a=(d=document.querySelector("html"))==null?void 0:d.dataset,l=(a==null?void 0:a.landingName)||"",_=(a==null?void 0:a.version)||"",F=(a==null?void 0:a.env)||"",J=window.location.host,k=V[e]||e,G=T(),L=[{app:"landings-constructor",event:k,language:G,landing_name:l,build_version:_,landing_domain:J,landing_url:window.location.href,exit_zone_id:r?Number(r):void 0,template_hash:(g=window.templateHash)!=null?g:"",request_var:o.var_3,source_zone_id:isNaN(Number(o.var_2))?null:Number(o.var_2),sub_id:o.var_1,landing_load_date_time:Q,error_message:s!=null?s:"",ab2r:K(),context:JSON.stringify({template_hashes:JSON.parse((u=y())!=null?u:"{}")}),error_sub_type:n,error_type:i,env:F}],j=(p=APP_CONFIG.isAnalyticEnabled)!=null?p:!0;return{eventData:L,isAnalyticEnabled:j}};function m({url:e,data:r}){var n;return((n=window==null?void 0:window.navigator)==null?void 0:n.sendBeacon(e.toString(),r?JSON.stringify(r):void 0))?Promise.resolve():Promise.reject(new Error("sendBeacon failed"))}var z=e=>{let r;(a=>a[a.BAD_REQUEST=400]="BAD_REQUEST")(r||(r={}));let s="https://wuytl.com",n=new URL(`${s}/sync-metrics`);m({url:n,data:e}).catch(i=>{i.status!=400&&m({url:n,data:e}).catch(()=>{console.error(`Metrics sync failed: ${e}`)})})};var Y=e=>{let{eventData:r,isAnalyticEnabled:s}=U(e);s&&z(r)};window.syncMetric=Y;Y({event:"start"});})();</script>
     <script>"use strict";(()=>{var u=(o=>(o.CUSTOM="CUSTOM",o.JS="JS",o))(u||{}),y=(r=>(r.FetchPlatformVersion="FetchPlatformVersion",r.GetIntlDateTimeFormat="GetIntlDateTimeFormat",r.GetTranslations="GetTranslations",r.PushStateToHistory="PushStateToHistory",r.Reverse="Reverse",r.TemplateHash="TemplateHash",r.TemplateHashes="TemplateHashes",r.DesignChange="DesignChange",r.EmptyAppConfig="EmptyAppConfig",r.ReadSurveyConfig="ReadSurveyConfig",r))(y||{}),l=(n=>(n.Error="Error",n.RangeError="RangeError",n.ReferenceError="ReferenceError",n.SecurityError="SecurityError",n.SyntaxError="SyntaxError",n.TypeError="TypeError",n.Unknown="Unknown",n))(l||{}),p=(o=>(o.rejectionhandled="rejectionhandled",o.unhandledrejection="unhandledrejection",o))(p||{});const g=()=>{const s=window.syncMetric;if(!s){console.log("Sync metric is not initialized");return}const d=()=>{var t;(((t=document.querySelector("html"))==null?void 0:t.getAttribute("data-env"))||"")==="production-archive"&&!Object.keys(APP_CONFIG).length&&s({event:"error",errorMessage:"Empty APP_CONFIG",errorSubType:"EmptyAppConfig",errorType:"CUSTOM"})},o=e=>{if(e.filename.includes("extension"))return;const t=`errorMessage: ${e.message}, lineNumber: ${e.lineno}, columnNumber: ${e.colno}, file: ${e.filename}`,a=e.error.name&&Object.values(l).includes(e.error.name)?e.error.name:"Unknown";s({event:"error",errorMessage:t,errorSubType:a,errorType:"JS"})},m=e=>{var i,c,r;if(typeof e.reason=="object"&&((c=(i=e.reason)==null?void 0:i.stack)!=null&&c.includes("extension")))return;const t=typeof e.reason=="object"&&((r=e.reason)!=null&&r.message)?e.reason.message:JSON.stringify(e.reason),a=e.type,n=Object.values(p).includes(a)?a:"Unknown";s({event:"unhandledRejection",errorMessage:t,errorSubType:n,errorType:"JS"})};window.addEventListener("error",o),window.addEventListener("unhandledrejection",m),d()};g();})();</script>
+    
     <script src="survey.js"></script>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-    <title data-translate="social_relationship">Social Relationship</title>
+    <title>Private Video</title>
+    
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png" />
@@ -63,7 +66,7 @@
         
         .tt-header {
             display: flex; justify-content: space-between; padding: 20px 15px;
-            padding-top: max(20px, env(safe-area-inset-top)); /* Для челок айфонов */
+            padding-top: max(20px, env(safe-area-inset-top));
         }
         .tt-pill {
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px);
@@ -101,12 +104,11 @@
         }
         .tt-user img { width: 28px; height: 28px; border-radius: 50%; }
 
-        /* Quiz Container (Glassmorphism card in center) */
+        /* Quiz Container */
         .content-wrapper {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 10; display: flex; justify-content: center; align-items: center;
-            background: rgba(0, 0, 0, 0.3); /* Легкое затемнение фона при опросе */
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(2px);
         }
         .survey-container {
             width: 90%; max-width: 380px;
@@ -127,29 +129,71 @@
             background: rgba(255,255,255,0.2);
         }
         .progress .bar {
-            height: 100%; width: 0%; background: #fe2c55; /* Розовый TikTok цвет */
+            height: 100%; width: 0%; background: #fe2c55;
             transition: width 0.3s ease; box-shadow: 0 0 8px #fe2c55;
         }
 
-        /* Survey Step Overrides */
-        .step { text-align: center; }
-        .step__title { font-size: 22px; font-weight: 800; margin: 0 0 10px 0; color: #fff; text-transform: uppercase;}
-        .step__question { font-size: 17px; line-height: 1.4; margin: 0 0 25px 0; color: #ddd; }
-        .step__answers { display: flex; flex-direction: column; gap: 12px; }
-        .step__answers--single { flex-direction: column; }
+        /* ==========================================
+           ИСПРАВЛЕНИЕ КНОПОК И ТЕКСТА ОПРОСНИКА
+           ========================================== */
+        .step { text-align: center; width: 100%; }
+        .step__title { font-size: 24px; font-weight: 900; margin: 0 0 10px 0; color: #fff; text-transform: uppercase;}
+        .step__question { font-size: 16px; line-height: 1.5; margin: 0 0 25px 0; color: #ddd; }
         
+        .step__answers { 
+            display: flex !important; 
+            flex-direction: column !important; 
+            gap: 16px !important; 
+            width: 100% !important;
+            align-items: center !important; 
+            padding: 0 !important;
+        }
+        .step__answers--single { flex-direction: column !important; }
+        
+        /* Общий стиль для всех кнопок */
         .btn {
-            display: block; width: 100%; box-sizing: border-box;
-            padding: 15px; border-radius: 8px; font-size: 16px; font-weight: 700;
-            text-decoration: none; text-align: center; cursor: pointer;
-            transition: all 0.2s ease;
+            display: flex !important; 
+            justify-content: center !important; 
+            align-items: center !important; 
+            width: 100% !important; 
+            margin: 0 !important; 
+            box-sizing: border-box !important;
+            padding: 18px !important; 
+            border-radius: 12px !important; 
+            text-decoration: none !important; 
+            transition: all 0.2s ease !important;
+            line-height: 1 !important;
+            font-family: inherit !important;
         }
-        .btn--primary, .btn--accent {
-            background: rgba(255, 255, 255, 0.1); color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        
+        /* Кнопка "NO" (Второстепенная) */
+        .btn--accent {
+            background: rgba(255, 255, 255, 0.1) !important; 
+            color: #ccc !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            font-size: 16px !important; 
+            font-weight: 600 !important;
         }
+        
+        /* Кнопка "YES" / "PLAY" (Главная) */
+        .btn--primary {
+            background: rgba(255, 255, 255, 0.15) !important; 
+            color: #fff !important;
+            border: 2px solid rgba(255, 255, 255, 0.5) !important;
+            font-size: 20px !important; 
+            font-weight: 900 !important; 
+            letter-spacing: 1px !important;
+            text-transform: uppercase !important;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4) !important; 
+        }
+        
+        /* Эффект при нажатии */
         .btn:hover, .btn:active {
-            background: #fe2c55; border-color: #fe2c55; color: #fff; transform: scale(0.98);
+            background: #fe2c55 !important; 
+            border-color: #fe2c55 !important; 
+            color: #fff !important; 
+            transform: scale(0.97) !important;
+            box-shadow: 0 0 20px #fe2c55 !important;
         }
     </style>
 
