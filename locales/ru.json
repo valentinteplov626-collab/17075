@@ -1,16 +1,10 @@
 {
-  "social_relationship": "Социальные отношения",
-  "attention": "ВНИМАНИЕ",
-  "are_you_over_18": "Вам больше 18 лет?",
-  "yes": "Да",
-  "no": "Нет",
-  "question": "Вопрос",
-  "what_is_your_gender": "Какой у вас пол?",
-  "female": "Женщина",
-  "male": "Мужчина",
-  "are_you_looking_for_relationship": "Вы ищете серьезные отношения?",
-  "congratulations": "Поздравляю!",
-  "your_partner_waiting_you": "Ваш идеальный партнер ждет вас! Зарегистрируйтесь и общайтесь прямо сейчас!",
-  "sign_up_and_chat": "Зарегистрируйтесь и общайтесь прямо сейчас!",
-  "start": "Старт"
+  "attention": "ATTENTION",
+  "age_verification": "To watch the video, we need your confirmation. Are you 18 or older?",
+  "yes": "Yes",
+  "no": "No",
+  "private_video": "Private Video",
+  "watch_full_uncensored": "This is an uncensored private video. Do you want to watch the full version?",
+  "play_button": "▶ Play Video",
+  "exit_site": "Exit site"
 }

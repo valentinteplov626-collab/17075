@@ -25,26 +25,175 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <title data-translate="social_relationship">Social Relationship</title>
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon//favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png" />
     <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+    
     <link rel="stylesheet" id="main-css" href="./assets/styles/style.css">
+    
+    <style>
+        /* TIKTOK UI OVERRIDE STYLES */
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background-color: #000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden; color: #fff;
+        }
+
+        /* Video Background */
+        .video-wrapper {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+        }
+        .video-wrapper video {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        /* Dark gradient overlay to make text readable */
+        .tt-gradient {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            z-index: 2; pointer-events: none;
+        }
+
+        /* TikTok UI Elements */
+        .tt-ui {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 5; pointer-events: none;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        
+        .tt-header {
+            display: flex; justify-content: space-between; padding: 20px 15px;
+            padding-top: max(20px, env(safe-area-inset-top)); /* Для челок айфонов */
+        }
+        .tt-pill {
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px);
+            padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;
+            display: flex; align-items: center; gap: 5px; pointer-events: auto;
+        }
+
+        .tt-sidebar {
+            position: absolute; right: 15px; bottom: 100px;
+            display: flex; flex-direction: column; align-items: center; gap: 20px;
+            pointer-events: auto;
+        }
+        .tt-icon-wrap {
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+        }
+        .tt-icon {
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 24px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+        .tt-icon-wrap span { font-size: 12px; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+        .tt-profile-pic {
+            width: 44px; height: 44px; border-radius: 50%; border: 2px solid #fff;
+            overflow: hidden; margin-bottom: 10px; background: #333;
+        }
+        .tt-profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+
+        .tt-footer {
+            padding: 15px; padding-bottom: max(15px, env(safe-area-inset-bottom));
+            pointer-events: auto;
+        }
+        .tt-user {
+            display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+        .tt-user img { width: 28px; height: 28px; border-radius: 50%; }
+
+        /* Quiz Container (Glassmorphism card in center) */
+        .content-wrapper {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10; display: flex; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.3); /* Легкое затемнение фона при опросе */
+            backdrop-filter: blur(2px);
+        }
+        .survey-container {
+            width: 90%; max-width: 380px;
+            background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px; padding: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popUp {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Progress Bar */
+        .progress {
+            position: absolute; top: 0; left: 0; width: 100%; height: 3px; z-index: 20;
+            background: rgba(255,255,255,0.2);
+        }
+        .progress .bar {
+            height: 100%; width: 0%; background: #fe2c55; /* Розовый TikTok цвет */
+            transition: width 0.3s ease; box-shadow: 0 0 8px #fe2c55;
+        }
+
+        /* Survey Step Overrides */
+        .step { text-align: center; }
+        .step__title { font-size: 22px; font-weight: 800; margin: 0 0 10px 0; color: #fff; text-transform: uppercase;}
+        .step__question { font-size: 17px; line-height: 1.4; margin: 0 0 25px 0; color: #ddd; }
+        .step__answers { display: flex; flex-direction: column; gap: 12px; }
+        .step__answers--single { flex-direction: column; }
+        
+        .btn {
+            display: block; width: 100%; box-sizing: border-box;
+            padding: 15px; border-radius: 8px; font-size: 16px; font-weight: 700;
+            text-decoration: none; text-align: center; cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn--primary, .btn--accent {
+            background: rgba(255, 255, 255, 0.1); color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn:hover, .btn:active {
+            background: #fe2c55; border-color: #fe2c55; color: #fff; transform: scale(0.98);
+        }
+    </style>
+
     <script defer src="./assets/scripts/common.js"></script>
-    <!-- UNCOMMENT SCRIPTS BELLOW AND COMMENT LINE ABOVE, IF YOU WANT TO CUSTOMIZE FEATURES-->
-    <!--
-        <script type="module" defer src="./assets/scripts/autoexit.js"></script>
-        <script type="module" defer src="./assets/scripts/pushScript.js"></script>
-        <script type="module" defer src="./assets/scripts/reverse.js"></script>
-        <script type="module" defer src="./assets/scripts/translateElements.js"></script>
-        <script type="module" defer src="./assets/scripts/generateSurvey.js"></script>
-        <script type="module" defer src="./assets/scripts/setRandomVideo.js"></script>
-    -->
-</head>
+    </head>
 
 <body class="body">
-    <div class="content-wrapper">
-        <div class="survey-container">
-            <!-- SURVEY LAYOUT WILL BE INJECTED HERE FROM JAVASCRIPT BASED ON YOUR "survey.js" FILE -->
+
+    <div class="video-wrapper">
+        <video autoplay muted playsinline loop class="video">
+            <source src="" type="video/mp4" />
+        </video>
+    </div>
+    <div class="tt-gradient"></div>
+
+    <div class="tt-ui">
+        <div class="tt-header">
+            <div class="tt-pill">Trending <span style="font-size:10px;">▼</span></div>
+            <div class="tt-pill"><span style="font-size:14px;">⚡</span> Filters <span style="font-size:10px;">▼</span></div>
+        </div>
+        
+        <div class="tt-sidebar">
+            <div class="tt-icon-wrap">
+                <div class="tt-profile-pic"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23ccc' viewBox='0 0 24 24'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>" alt="user"></div>
+            </div>
+            <div class="tt-icon-wrap">
+                <div class="tt-icon">🤍</div>
+                <span>49</span>
+            </div>
+            <div class="tt-icon-wrap">
+                <div class="tt-icon">💬</div>
+                <span>...</span>
+            </div>
+            <div class="tt-icon-wrap">
+                <div class="tt-icon">🪄</div>
+                <span>...</span>
+            </div>
+        </div>
+
+        <div class="tt-footer">
+            <div class="tt-user">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23ccc' viewBox='0 0 24 24'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>" alt="user">
+                <span>Melissa</span>
+            </div>
         </div>
     </div>
 
@@ -52,13 +201,11 @@
         <div class="bar"></div>
     </div>
 
-    <div class="video-wrapper">
-        <video autoplay muted playsinline loop class="video">
-            <source src="" type="video/mp4" />
-        </video>
+    <div class="content-wrapper">
+        <div class="survey-container">
+            </div>
     </div>
 
-    <!-- THIS ELEMENT IS USED AS TEMPLATE FOR SURVEY STEPS  -->
     <template id="step">
         <div class="step current">
             <div class="step__inner">
@@ -70,28 +217,24 @@
                 </div>
                 <div class="step__footer">
                     <div class="step__answers">
-                        <!-- ANSWERS -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
     </template>
 
-    <!-- THIS ELEMENT IS USED AS TEMPLATE FOR SURVEY LEFT ANSWERS  -->
     <template id="step-answer-left">
-        <a class="btn btn--accent btn--round" href="#">
+        <a class="btn btn--accent" href="#">
             Answer
         </a>
     </template>
 
-    <!-- THIS ELEMENT IS USED AS TEMPLATE FOR SURVEY RIGHT ANSWERS  -->
     <template id="step-answer-right">
-        <a class="btn btn--primary btn--round" href="#">
+        <a class="btn btn--primary" href="#">
             Answer
         </a>
     </template>
 
-    <!-- THIS ELEMENT IS USED AS TEMPLATE FOR SURVEY SINGLE ANSWER  -->
     <template id="step-answer-single">
         <div class="step__answers step__answers--single">
             <a class="btn btn--primary" href="#">
@@ -105,6 +248,5 @@
 Build hash:   ${d}
 Runtime hash: ${i}`)}),console.groupEnd();let l=Object.values(E),g=Object.values(f).some(s=>s.equal===!1);window.templateHashes=Object.fromEntries(Object.entries(f).sort(([s],[i])=>{let m=l.indexOf(s),d=l.indexOf(i);return m!==-1&&d!==-1?m-d:m!==-1?-1:d!==-1?1:s.localeCompare(i)}));let H=s=>s.some(i=>i.startsWith("ad-")||i.includes("adblock")||i.includes("extension")||i.includes("overlay")||i.includes("popup")||i.includes("cookie")||i.includes("consent")||i.includes("banner")),w=s=>s.startsWith("ad_")||s.includes("adblock")||s.includes("extension")||s.includes("chrome")||s.includes("google")||s.includes("react")||s.includes("__"),y=4096,M=150,ie=5,C=[],p={};x.querySelectorAll("*").forEach(s=>{var G;if(s.getAttribute("data-cs")==="exclude")return;let i=s.tagName.toLowerCase();if(i==="base"||i==="script"&&s.textContent.match(P))return;p[i]||(p[i]={count:0,injected:0,hasInlineStyle:0,suspiciousId:0,suspiciousClass:0,inShadowDom:0,isTopLevelInjected:0,isIframe:0,textContent:""});let m=s.hasAttribute("style"),d=s.id?w(s.id):!1,I=H([...s.classList]),N=!!((G=s.getRootNode())!=null&&G.host),ce=x.querySelector("body"),v=s.parentElement===ce&&(i==="div"||i==="iframe"),$=s.tagName==="IFRAME",ue=m||d||I||N||v||$,h=p[i];if(h.count++,ue&&h.injected++,m&&h.hasInlineStyle++,d&&h.suspiciousId++,I&&h.suspiciousClass++,N&&h.inShadowDom++,v&&h.isTopLevelInjected++,$&&h.isIframe++,i==="style"&&C.length<ie){let k=(s.textContent||"").replace(/\s+/g,"").slice(0,M),le=k.replace(/</g,"\\u003C");k&&C.push(le)}}),p.style&&(p.style.textContent="");let ae=JSON.stringify(p).length,B=y-ae-100;if(B>0&&p.style&&C.length){let s="";for(let i of C){let m=(s?";":"")+i;if(m.length>B)break;s+=m,B-=m.length}p.style.textContent=s}JSON.stringify(p).length>y&&p.style&&(p.style.textContent="max_length");let T={...window.templateHashes,tagCounts:{},resources:{}};g&&(T.tagCounts=p,T.resources=c,JSON.stringify(T).length>y&&T.tagCounts.style&&(T.tagCounts.style.textContent="")),window.templateHashes=T,(e=window.syncMetric)==null||e.call(window,{event:"template_hashes_ready"})}catch(n){console.error("Error computing runtime template hash:",n),n instanceof Error&&((t=window.syncMetric)==null||t.call(window,{event:"error",errorMessage:n.message,errorType:"TemplateHashes"}))}});})();
 </script>
-    </body>
-
+</body>
 </html>
